@@ -6,11 +6,13 @@ class Snake(GameEnvironment):
     name, width, height, n_actions, observation_size = 'snake', 800, 600, 3, 11
     cell, dt = 20, 1/8
     directions = ((1,0),(0,1),(-1,0),(0,-1))  # leste sul oeste norte
-    def __init__(self, max_steps=2000, starvation=100, shaping=False, gamma=.9):
+    def __init__(self, max_steps=2000, starvation=100, shaping=False, gamma=.9, bits=11):
         super().__init__(max_steps)
         if starvation < 1: raise ValueError('starvation deve ser positivo')
         if not 0 <= gamma < 1: raise ValueError('gamma fora de [0,1)')
-        self.starvation, self.shaping, self.gamma = starvation, shaping, gamma
+        if bits not in (11, 14): raise ValueError('bits deve ser 11 ou 14')
+        self.starvation, self.shaping, self.gamma, self.bits = starvation, shaping, gamma, bits
+        self.observation_size = bits
     def reset(self, seed=None):
         self._reset(seed)
         self.body, self.direction, self.hungry, self.apples = [(20,15),(19,15),(18,15)], 0, 0, 0
@@ -32,10 +34,22 @@ class Snake(GameEnvironment):
         head,_ = self.next_head(action)
         growing = head == self.food
         return not (0 <= head[0] < 40 and 0 <= head[1] < 30) or head in (self.body if growing else self.body[:-1])
+    def danger2(self, action):
+        """Perigo a 2 passos na direção da ação (olhar 2 blocos à frente)."""
+        (x1, y1), d = self.next_head(action)
+        dx, dy = self.directions[d]
+        x2, y2 = x1 + dx, y1 + dy
+        if self.danger(action): return True
+        growing = (x1, y1) == self.food
+        body_to_check = self.body if growing else (self.body[:-2] if len(self.body) >= 2 else [])
+        return not (0 <= x2 < 40 and 0 <= y2 < 30) or (x2, y2) in body_to_check
     def observe(self):
         x,y = self.body[0];fx,fy = self.food if self.food is not None else (x,y)
-        # Norte, Sul, Leste, Oeste; ação relativa e índice documentados.
-        return np.array([self.danger(a) for a in range(3)]+[self.direction==d for d in (3,1,0,2)]+[fy<y,fy>y,fx<x,fx>x],dtype=np.float64)
+        d1 = [self.danger(a) for a in range(3)]
+        d2 = [self.danger2(a) for a in range(3)] if self.bits == 14 else []
+        dir_bits = [self.direction==d for d in (3,1,0,2)]
+        food_bits = [fy<y, fy>y, fx<x, fx>x]
+        return np.array(d1 + d2 + dir_bits + food_bits, dtype=np.float64)
     def info(self):
         return dict(super().info(), apples=self.apples, length=len(self.body), hungry=self.hungry)
     def step(self, action):

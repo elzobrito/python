@@ -157,3 +157,29 @@ def test_invaders_heuristic_opens_shield_but_dodges():
     assert h.act(obs)==3
     obs[6:8]=[.01,.02]
     assert h.act(obs)==1
+
+
+def test_snake_14_bits_observation_and_qlearning(tmp_path):
+    from games2d.agents import QLearning, state_index, save_agent, load_agent
+    e = make_env('snake', bits=14)
+    obs, info = e.reset(42)
+    assert e.observation_size == 14 and obs.shape == (14,)
+    # Testar danger2 em proximidade de borda (parede a 2 blocos)
+    e.body = [(1, 15), (2, 15), (3, 15)]
+    e.direction = 2  # apontando oeste (x=1); 1 passo -> x=0 (livre), 2 passos -> x=-1 (perigo)
+    assert not e.danger(0)  # frente a 1 passo livre
+    assert e.danger2(0)     # frente a 2 passos bate na parede oeste
+    # Testar state_index e QLearning
+    idx = state_index(e.observe())
+    assert 0 <= idx < 16384
+    agent = QLearning(seed=0)
+    a = agent.act(e.observe())
+    assert a in (0, 1, 2)
+    agent.learn(e.observe(), a, 10.0, e.observe(), False)
+    assert agent.Q.shape == (16384, 3)
+    # Testar serializacao e recarga do modelo de 14 bits
+    path = tmp_path / 'snake_14.json'
+    save_agent(agent, path, metadata=dict(game='snake', candidate='q_plain', bits=14))
+    loaded, meta = load_agent(path, expected_game='snake')
+    assert loaded.Q.shape == (16384, 3) and meta['bits'] == 14
+

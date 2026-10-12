@@ -23,7 +23,9 @@ PROFILES={
 
 def environment(game,config,shaping=False):
     limit=min(config['max_steps'],2000 if game=='snake' else 1200 if game=='invaders' else 3600)
-    return make_env(game,max_steps=limit,**({'shaping':shaping} if game=='snake' else {}))
+    extra={'shaping':shaping} if game=='snake' and shaping else {}
+    if game=='snake' and 'snake_bits' in config:extra['bits']=config['snake_bits']
+    return make_env(game,max_steps=limit,**extra)
 
 def rollout(env,agent,seed,policy_seed=None):
     obs,info=env.reset(seed)
@@ -78,7 +80,8 @@ def train_agent(game,candidate,seed,config):
         agent=CART();agent.fit(np.array(X),np.array(y))
         trace.append(dict(unit=len(X),score=0,base_return=0,train_return=0,steps=len(X),loss=0.))
     elif candidate=='genetic':
-        shape=(11,3) if game=='snake' else (6,)
+        bits=config.get('snake_bits',11) if game=='snake' else 6
+        shape=(bits,3) if game=='snake' else (6,)
         population=rng.normal(0,1,(config['ga_population'],*shape))
         if game=='invaders':population[0]=[1,5,1,3,2,3]
         best_score=-np.inf;best=None

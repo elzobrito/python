@@ -116,8 +116,9 @@ def main(argv=None):
     if args.fast and args.frames is None:p.error('--fast requer --frames')
     game=args.game or choose_game()
     if game is None:return
-    agent=load_agent(args.model,game)[0] if args.model else Heuristic(game)
-    env=make_env(game);session=Session(env,agent,args.seed);clock=session.pg.time.Clock();accum=0.;frames=0
+    agent,meta=load_agent(args.model,game) if args.model else (Heuristic(game),{})
+    extra={'bits':14} if (game=='snake' and (meta.get('bits')==14 or (isinstance(agent,QLearning) and len(agent.Q)==16384))) else {}
+    env=make_env(game,**extra);session=Session(env,agent,args.seed);clock=session.pg.time.Clock();accum=0.;frames=0
     try:
         while session.running and (args.frames is None or frames<args.frames):
             elapsed=env.dt if args.fast else min(clock.tick(60)/1000,.25)

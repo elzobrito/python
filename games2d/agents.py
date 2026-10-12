@@ -6,8 +6,9 @@ import numpy as np
 
 def state_index(obs):
     x=np.asarray(obs)
-    if x.shape!=(11,) or not np.isin(x,[0,1]).all():raise ValueError('Snake requer 11 bits')
-    return int(x.astype(np.int64) @ (1 << np.arange(11)))
+    n=x.shape[0] if x.ndim==1 else 0
+    if n not in (11,14) or not np.isin(x,[0,1]).all():raise ValueError('Snake requer 11 ou 14 bits')
+    return int(x.astype(np.int64) @ (1 << np.arange(n)))
 
 class RandomAgent:
     kind='random'
@@ -43,12 +44,18 @@ class Heuristic:
 
 class QLearning:
     kind='q_learning'
-    def __init__(self,seed=0,alpha=.1,gamma=.9):
-        self.Q=np.zeros((2048,3));self.rng=np.random.default_rng(seed);self.alpha,self.gamma=alpha,gamma
+    def __init__(self,seed=0,alpha=.1,gamma=.9,n_states=2048):
+        self.Q=np.zeros((n_states,3));self.rng=np.random.default_rng(seed);self.alpha,self.gamma=alpha,gamma
+    def _ensure_state(self,idx):
+        if idx>=len(self.Q):
+            new_size=16384 if idx<16384 else idx+1
+            new_Q=np.zeros((new_size,3));new_Q[:len(self.Q)]=self.Q;self.Q=new_Q
     def act(self,obs,epsilon=0):
-        return int(self.rng.integers(3)) if self.rng.random()<epsilon else int(self.Q[state_index(obs)].argmax())
+        idx=state_index(obs);self._ensure_state(idx)
+        return int(self.rng.integers(3)) if self.rng.random()<epsilon else int(self.Q[idx].argmax())
     def learn(self,obs,a,r,nxt,terminated):
         s,s2=state_index(obs),state_index(nxt)
+        self._ensure_state(max(s,s2))
         target=r+self.gamma*(not terminated)*self.Q[s2].max()
         self.Q[s,a]+=self.alpha*(target-self.Q[s,a])
     def data(self):return {'kind':self.kind,'Q':self.Q.tolist(),'alpha':self.alpha,'gamma':self.gamma}
@@ -132,7 +139,7 @@ class LinearAgent:
     kind='linear'
     def __init__(self,game,weights):
         self.game=game;self.weights=np.asarray(weights,dtype=float)
-        expected=(11,3) if game=='snake' else (6,)
+        expected=(14,3) if (game=='snake' and self.weights.shape==(14,3)) else ((11,3) if game=='snake' else (6,))
         if self.weights.shape!=expected or not np.isfinite(self.weights).all():raise ValueError('Pesos lineares invalidos')
     def act(self,obs,epsilon=0):
         values=obs@self.weights if self.game=='snake' else utility_features(obs)@self.weights
@@ -154,7 +161,7 @@ def load_agent(path,expected_game=None):
     elif kind=='heuristic':agent=Heuristic(d['game'])
     elif kind=='q_learning':
         agent=QLearning(alpha=d['alpha'],gamma=d['gamma']);agent.Q=np.asarray(d['Q'],dtype=float)
-        if agent.Q.shape!=(2048,3) or not np.isfinite(agent.Q).all():raise ValueError('Tabela Q invalida')
+        if agent.Q.shape not in ((2048,3),(16384,3)) or not np.isfinite(agent.Q).all():raise ValueError('Tabela Q invalida')
     elif kind=='dqn':
         agent=DQN(d['inputs'],d['hidden'],d['actions'],lr=d['lr'],gamma=d['gamma'])
         for k in ['W1','b1','W2','b2']:
