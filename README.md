@@ -7,7 +7,7 @@ Autor: [Elzo Brito](https://github.com/elzobrito) · `@elzobrito`
 ## Demonstração dos jogos 2D
 
 O pacote [games2d](games2d/README.md) integra Snake, Pong, Breakout e Space
-Invaders com agentes de IA e controles humanos.
+Invaders com agentes de IA (incluindo Q-Learning com sensores de 11 e 14 bits com lookahead de profundidade 2, DQN, CART e Algoritmos Genéticos) e controles humanos.
 
 ![Menu de seleção de Snake, Pong, Breakout e Space Invaders no desktop](assets/games2d/menu.png)
 
@@ -85,6 +85,7 @@ dados.py                   # iris, breast cancer, blobs, split, métricas
 arvores.py                 # CART, regressão e ganho estilo XGBoost
 iris.csv                   # 150 flores, 3 classes
 breast_cancer.csv          # 569 exames, 2 classes
+games2d/                   # jogos 2D, sensores (11/14 bits), agentes RL/GA e visualizador
 ```
 
 Iris e breast cancer estão no formato dos CSVs do scikit-learn (domínio público). Blobs são sintéticos, com centros bem separados.

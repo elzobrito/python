@@ -16,8 +16,24 @@ Observações retornam cópias; ações inválidas e step após encerramento sã
 
 Snake: grade 40×30; 3 ações relativas; comida só em células livres; colisão
 com corpo; entrar na cauda que sai no mesmo passo é permitido. Tabuleiro cheio
-é vitória. Esses são ajustes explícitos ao snake.py didático. 11 bits são uma
-observação parcial, não um MDP completo. Índice soma bit[i]*2**i.
+é vitória. Esses são ajustes explícitos ao snake.py didático.
+
+Sensores do Snake (11 bits padrão e extensão 14 bits):
+A observação é parcial (não um MDP completo). O índice do estado soma bit[i]*2**i:
+- Bits 0..2: Perigo imediato a 1 passo (frente, esquerda, direita).
+- Bits 3..6: Direção absoluta do movimento (cima, direita, baixo, esquerda).
+- Bits 7..10: Posição relativa da comida (acima, à direita, abaixo, à esquerda).
+- Bits 11..13 (modo bits=14): Perigo antecipado a 2 passos (frente, esquerda, direita).
+A extensão para 14 bits (bits=14) foi motivada pela miopia espacial do sensor de 11 bits:
+ao atingir tamanho >15–20, a cobra frequentemente entrava em becos sem saída de 1 célula
+ou realizava espirais fatais porque uma ação segura a 1 passo pode ser armadilha a 2 passos.
+O lookahead de profundidade 2 previne o auto-encarceramento em bolsões imediatos.
+O espaço discreto salta de 2^11 = 2.048 para 2^14 = 16.384 estados. A Q-table resultante
+(16.384×3 = 49.152 valores float64, ~330 KB em JSON) permanece leve e treinável puramente
+em CPU em poucos minutos (ex: 10.000 episódios), sem necessidade de aceleração em GPU.
+O ambiente mantém bits=11 como padrão para compatibilidade retroativa com os baselines
+congelados, suportando bits=14 via parâmetro explícito ou configuração.
+
 Recompensa base: comida +10; morte -10; vitória inclui comida final.
 Shaping opcional: gamma=0.9, Phi=-distância Manhattan em células, Phi terminal=0.
 Phi é calculado no estado interno completo, antes/depois inclusive nova comida.

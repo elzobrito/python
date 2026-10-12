@@ -50,6 +50,36 @@ movimento; espaço dispara em Invaders. Snake bloqueia inversão de 180 graus.
 Sem --model, a demonstração usa a heurística. Um arquivo de modelo de outro
 jogo é rejeitado. Não há treinamento durante a demonstração.
 
+### Treinamento customizado e sensor de 14 bits (Snake)
+
+Para treinar um modelo específico com parâmetros personalizados diretamente via script Python:
+
+```python
+from pathlib import Path
+from games2d.experiment import train_agent, PROFILES
+from games2d.agents import save_agent
+
+# Configuração baseada no perfil pilot com sensor expandido de 14 bits:
+config = dict(PROFILES['pilot'])
+config['snake_bits'] = 14     # ativa sensor de 14 bits (lookahead de profundidade 2)
+config['q_episodes'] = 10000  # amplia episódios para cobrir os 16.384 estados discretos
+
+print("Treinando Snake Q-Learning com sensor de 14 bits...")
+agent, meta, trace = train_agent('snake', 'q_plain', seed=42, config=config)
+
+out_file = Path('snake-q14-10k.json')
+save_agent(agent, out_file, metadata=meta)
+print(f"Modelo salvo em {out_file}")
+```
+
+Para executar visualmente no Pygame com detecção automática do sensor de 14 bits:
+
+```bash
+uv run --with numpy --with pygame-ce python -m games2d.play --game snake --model snake-q14-10k.json
+```
+
+O `play.py` detecta dinamicamente a dimensão da tabela `(16384, 3)` ou metadados `bits: 14` e instancia o ambiente com `make_env('snake', bits=14)`.
+
 ## Perfis e interpretação
 
 | Perfil | Runs | Testes/modelo | Q episódios | DQN steps | CART amostras | GA população × gerações × jogos | Horizonte máximo |
@@ -96,8 +126,11 @@ As variantes não prometem equivalência bit a bit com os scripts originais:
 movimento de raquetes/nave usa coordenadas subpixel; dt fixo substitui o tempo
 variável de renderização; Snake tem corpo/cauda/comida corretos e ações relativas;
 Pong tem teto de velocidade. Essas regras são comuns ao treino e renderer.
-Observações Snake e Invaders são parciais. Potencial Snake usa distância interna
-e zero terminal; isso não garante convergência da representação de 11 bits.
+Observações Snake e Invaders são parciais. O Snake oferece dois modos de observação:
+- **11 bits (padrão):** 3 bits de perigo a 1 passo (frente/esquerda/direita), 4 bits de direção absoluta e 4 bits de posição relativa da maçã. Total de 2.048 estados discretos.
+- **14 bits (`bits=14`):** adiciona 3 bits de perigo antecipado a 2 passos (`danger2` à frente, esquerda e direita). Total de 16.384 estados discretos ($2^{14}$).
+A extensão de 14 bits mitiga a miopia espacial do sensor de 11 bits: cobras longas (>15–20 maçãs) frequentemente entram em becos sem saída de 1 célula que pareciam livres no passo imediato, mas são armadilhas a 2 passos. O lookahead de profundidade 2 fornece horizonte tático sem exigir redes neurais profundas nem GPU: a tabela de 16.384 estados possui 49.152 valores float64 (~330 KB em JSON) e treina em 3–5 minutos em CPU. O ecossistema é totalmente retrocompatível: `load_agent`, `QLearning` e `play.py` adaptam-se dinamicamente às dimensões do modelo.
+Potencial Snake usa distância interna e zero terminal; isso não garante convergência da representação de 11 bits.
 Pong usa centros das raquetes e canto superior esquerdo da bola; heurística
 compensa meia altura da bola. Breakout mantém slots fixos para resistência 0/1/2.
 Invaders tem seis ações e escudos que bloqueiam ambos os lados; a heurística
