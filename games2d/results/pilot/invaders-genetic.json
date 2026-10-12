@@ -1,0 +1,1 @@
+{"schema": "games2d.model.v1", "metadata": {"game": "invaders", "candidate": "genetic", "seed": 1, "wall_seconds": 12.3863780410029, "cpu_seconds": 12.381060543999979, "transitions": 64800, "updates": 0, "selection": "validation_mean", "validation_mean": 102.5}, "agent": {"kind": "linear", "game": "invaders", "weights": [1.0, 5.0, 1.0, 3.0, 2.0, 3.0]}}

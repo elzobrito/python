@@ -1,0 +1,16 @@
+{
+  "invaders-genetic.json": "e841cb2e13d8303f27e7c9ecfcb8b655540b5342e1acb4ab742fdad0f26a9854",
+  "breakout-dqn.json": "30ea8e9aaa5b4c543a54767075f6bcd6e617e31227fff329b1a99bcbea45d318",
+  "pong-dqn.json": "61e08093f7746625c25e5529ad38ef5f542edf6cbd75e3d240caf0290f7f9f80",
+  "pong-cart.json": "d32cd02984114d167dd41187729c9b3c68d143e202770aadf9bf1ca5b10c5301",
+  "snake-genetic.json": "1dde683774449015538e252355a5498ff684d1a08fb119a41a2b064adf43b3c4",
+  "snake-q_shaping.json": "727f6f2af57bf9f15534c219681db21ec896c54d44a7dec3e9b9d6ebdcf34f28",
+  "snake-q_plain.json": "885ed0551f63e122b29cf4112f6989a03df008c56fa05837008e27e12df6f88c",
+  "training.csv": "1f2d011278aef473de5996544d200fa396d4198d776634260c0fcf18c16d9516",
+  "validation.csv": "384fcdf4a2f08cdc539f760edc7359c342551989841c1964c9189cf4226fddc5",
+  "evaluation.csv": "2f1168967a2e7f371171351739d309fea0bb08efaac6ae465bb8d8f6ce8a3afe",
+  "costs.json": "f96e8497b2631de998a68ef5a00b31d1cfde32583ce67fdf0d12511970d72d86",
+  "models.json": "d141adab7d15b9c44174e355b9d9e813563df6fa734ad6e4e88a7ebbb9f4cd6b",
+  "provenance.json": "257294cef3e847ce738895883bf2ade7f180c910bcc563a162609249f8a224c1",
+  "config.json": "d0e85171ea896b074439b3a545dc2ccdc8b586bd94e19c91a504d062fa72ff5c"
+}

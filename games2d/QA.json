@@ -1,0 +1,67 @@
+{
+  "schema": "games2d.qa.v1",
+  "automated_review": "same_runner_codex_not_independent",
+  "original_file_hashes": {
+    "g4_anomalias.py": "877d571a8a8bfd6c6b1bf66ef95283ae7623a49b890b2b32a4a72f6b1939e4c9",
+    "g1_supervisionado.py": "567952ef38d428d362f6f9e256dbbd64d54d2d8c9bec5802eb0c122bb14d3936",
+    "g5_reforco.py": "4afd1d674ffd747e1a9f95c5c7f2d65897b1a5ffc29a55962f659265e990fdb1",
+    "iris.csv": "f13ffa8fdd56fd8e6c8d16d4081a3fbd3114bcd0aae4256c43205169cd9d1449",
+    "g2_boosting.py": "22b4af2d0529324649e6288384021d4abcbd4eb1cc2c4f6194b447c423359659",
+    "dados.py": "eb2742e560ae550113e8560d0af9111aa34c2d98f0efd1ecb24567846aa7dc65",
+    ".gitignore": "b76770b0f0a9dddbaf3384abd6da41fd9192c14638d1bc2fa165a6cad0a761f6",
+    "g6_redes.py": "7a43dec3f001132824daf97118f8b7c686fe801fe179c358212dba35f5c5625f",
+    "breast_cancer.csv": "fed3eb72d0575ef6192293f5093c6e801b1476b577d0386bf4455504522172ed",
+    "run_all.py": "bca5d96dde3f9be4288f79c1a42ef2830f20e1f6ac62db60c85e4d92d25ffe4d",
+    "arvores.py": "15142e1ad2d08acce59039c274f25df424c46dbc9046d2b673fa9c82c98348ee",
+    "README.md": "d55c4baf9cc7ab4d08670dfd5cf6eb5ef34a1d5ebc4b77ffff3178631149bc04",
+    "g3_nao_supervisionado.py": "a44149f996b88204e11d4f3f6c536e4d65956e652240822c6dc5061f4cf35be2"
+  },
+  "tests_full": "26 passed after plotting correction",
+  "tests_headless": "25 passed, 1 skipped, 0.49s",
+  "original_demo": "python -B run_all.py: exit 0, 139 output lines",
+  "renderer": "SDL dummy; screenshots inspected for all four games; A/H/R/Esc automated",
+  "visual_human_acceptance": false,
+  "python": "3.14.4",
+  "screenshots": {
+    "snake": "3fd69b4b1b8de79f176134ba6598d4ba09002e0070efd1484915f666562cc531",
+    "pong": "ea2f253eb32472a7584eefb441965e081170dcfef6c5d81f2a3806a033ef8982",
+    "breakout": "2e5c3bf2b721883f7fc78f5ec7b2cd3663cef72adea24cab36722bea2c076eb5",
+    "invaders": "d69f3855ab077e28e29982fdb2e022433feedce5eceaf775a646c2d2ee57e40e"
+  },
+  "evaluation_rows": 7500,
+  "validation_rows": 1500,
+  "models": 75,
+  "exact_checkpoint_replays": 45,
+  "decisions": {
+    "snake": {
+      "validation_candidate": "q_plain",
+      "status": "SEM_VENCEDOR_COMPROVADO",
+      "recommended": null
+    },
+    "pong": {
+      "validation_candidate": "cart",
+      "status": "SEM_VENCEDOR_COMPROVADO",
+      "recommended": null
+    },
+    "breakout": {
+      "validation_candidate": "dqn",
+      "status": "SEM_VENCEDOR_COMPROVADO",
+      "recommended": null
+    },
+    "invaders": {
+      "validation_candidate": "genetic",
+      "status": "SEM_VENCEDOR_COMPROVADO",
+      "recommended": null
+    }
+  },
+  "source_provenance_matches_at_training_completion": true,
+  "postprocessing": "Short-series SVG visibility corrected; raw sources retained in provenance.json, current benchmark hash declared separately.",
+  "curves_visually_inspected": true,
+  "menu_keys_verified": [
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "trained_checkpoint_rendered": "snake-q_plain.json, 20 steps in SDL dummy, inspected HUD and Q max"
+}

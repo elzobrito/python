@@ -1,0 +1,583 @@
+{
+  "profile": "pilot",
+  "adequate_replications": true,
+  "summary": [
+    {
+      "game": "snake",
+      "candidate": "random",
+      "n_runs": 5,
+      "n_episodes": 500,
+      "mean": 0.68,
+      "median": 0.0,
+      "std": 2.8201962722527054,
+      "ci95": [
+        0.32,
+        1.14
+      ],
+      "win_rate": 0.0,
+      "truncation_rate": 0.69,
+      "latency_p95_us": 2.116,
+      "latency_median_us": 2.009,
+      "train_wall_mean_s": 5.342839285731316e-05,
+      "train_cpu_mean_s": 5.210859999998929e-05,
+      "transitions": 0,
+      "comparisons": {
+        "random": {
+          "mean": 0.0,
+          "ci": [
+            0.0,
+            0.0
+          ]
+        },
+        "heuristic": {
+          "mean": -366.22,
+          "ci": [
+            -390.04275,
+            -341.5535
+          ]
+        }
+      },
+      "selected_by_validation": false
+    },
+    {
+      "game": "snake",
+      "candidate": "heuristic",
+      "n_runs": 5,
+      "n_episodes": 500,
+      "mean": 366.9,
+      "median": 370.0,
+      "std": 109.49597589626273,
+      "ci95": [
+        345.1975,
+        388.1025
+      ],
+      "win_rate": 0.0,
+      "truncation_rate": 0.32,
+      "latency_p95_us": 36.897849999999984,
+      "latency_median_us": 15.998000000000001,
+      "train_wall_mean_s": 7.179990643635392e-06,
+      "train_cpu_mean_s": 5.291800000239988e-06,
+      "transitions": 0,
+      "comparisons": {
+        "random": {
+          "mean": 366.22,
+          "ci": [
+            341.5535,
+            390.04275
+          ]
+        },
+        "heuristic": {
+          "mean": 0.0,
+          "ci": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "selected_by_validation": false
+    },
+    {
+      "game": "snake",
+      "candidate": "q_plain",
+      "n_runs": 5,
+      "n_episodes": 500,
+      "mean": 291.2,
+      "median": 310.0,
+      "std": 124.44731523233868,
+      "ci95": [
+        247.0145,
+        345.0809999999999
+      ],
+      "win_rate": 0.0,
+      "truncation_rate": 0.348,
+      "latency_p95_us": 43.451349999999984,
+      "latency_median_us": 24.008,
+      "train_wall_mean_s": 59.966792984388306,
+      "train_cpu_mean_s": 59.95554530060001,
+      "transitions": 2755625,
+      "comparisons": {
+        "random": {
+          "mean": 290.52,
+          "ci": [
+            240.2195,
+            351.2445
+          ]
+        },
+        "heuristic": {
+          "mean": -75.7,
+          "ci": [
+            -133.65624999999997,
+            -9.432749999999974
+          ]
+        }
+      },
+      "selected_by_validation": true
+    },
+    {
+      "game": "snake",
+      "candidate": "q_shaping",
+      "n_runs": 5,
+      "n_episodes": 500,
+      "mean": 0.06,
+      "median": 0.0,
+      "std": 0.7730428127734982,
+      "ci95": [
+        0.0,
+        0.2
+      ],
+      "win_rate": 0.0,
+      "truncation_rate": 0.61,
+      "latency_p95_us": 38.34939999999998,
+      "latency_median_us": 23.964,
+      "train_wall_mean_s": 22.24941932139918,
+      "train_cpu_mean_s": 22.22847922179999,
+      "transitions": 1088678,
+      "comparisons": {
+        "random": {
+          "mean": -0.62,
+          "ci": [
+            -1.16,
+            -0.22
+          ]
+        },
+        "heuristic": {
+          "mean": -366.84,
+          "ci": [
+            -390.86275,
+            -342.09049999999996
+          ]
+        }
+      },
+      "selected_by_validation": false
+    },
+    {
+      "game": "snake",
+      "candidate": "genetic",
+      "n_runs": 5,
+      "n_episodes": 500,
+      "mean": 3.4,
+      "median": 0.0,
+      "std": 6.428269229783485,
+      "ci95": [
+        0.9795,
+        6.2
+      ],
+      "win_rate": 0.0,
+      "truncation_rate": 0.136,
+      "latency_p95_us": 1.9471999999999998,
+      "latency_median_us": 1.7865,
+      "train_wall_mean_s": 0.04925583440344781,
+      "train_cpu_mean_s": 0.049245069400001285,
+      "transitions": 14873,
+      "comparisons": {
+        "random": {
+          "mean": 2.72,
+          "ci": [
+            0.02,
+            5.840250000000001
+          ]
+        },
+        "heuristic": {
+          "mean": -363.5,
+          "ci": [
+            -387.58074999999997,
+            -338.9185
+          ]
+        }
+      },
+      "selected_by_validation": false
+    },
+    {
+      "game": "pong",
+      "candidate": "random",
+      "n_runs": 5,
+      "n_episodes": 500,
+      "mean": -3.688,
+      "median": -4.0,
+      "std": 0.9800903806836476,
+      "ci95": [
+        -3.818,
+        -3.562
+      ],
+      "win_rate": 0.0,
+      "truncation_rate": 0.748,
+      "latency_p95_us": 6.9085,
+      "latency_median_us": 2.012,
+      "train_wall_mean_s": 5.1521998830139634e-05,
+      "train_cpu_mean_s": 5.0068799998825854e-05,
+      "transitions": 0,
+      "comparisons": {
+        "random": {
+          "mean": 0.0,
+          "ci": [
+            0.0,
+            0.0
+          ]
+        },
+        "heuristic": {
+          "mean": -3.688,
+          "ci": [
+            -3.834,
+            -3.54
+          ]
+        }
+      },
+      "selected_by_validation": false
+    },
+    {
+      "game": "pong",
+      "candidate": "heuristic",
+      "n_runs": 5,
+      "n_episodes": 500,
+      "mean": 0.0,
+      "median": 0.0,
+      "std": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "win_rate": 0.0,
+      "truncation_rate": 1.0,
+      "latency_p95_us": 0.786,
+      "latency_median_us": 0.709,
+      "train_wall_mean_s": 6.691395537927747e-06,
+      "train_cpu_mean_s": 4.4934000015928175e-06,
+      "transitions": 0,
+      "comparisons": {
+        "random": {
+          "mean": 3.688,
+          "ci": [
+            3.54,
+            3.834
+          ]
+        },
+        "heuristic": {
+          "mean": 0.0,
+          "ci": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "selected_by_validation": false
+    },
+    {
+      "game": "pong",
+      "candidate": "cart",
+      "n_runs": 5,
+      "n_episodes": 500,
+      "mean": -3.688,
+      "median": -4.0,
+      "std": 0.907912225503345,
+      "ci95": [
+        -3.85805,
+        -3.51595
+      ],
+      "win_rate": 0.0,
+      "truncation_rate": 0.796,
+      "latency_p95_us": 5.169199999999999,
+      "latency_median_us": 1.669,
+      "train_wall_mean_s": 1.304335030989023,
+      "train_cpu_mean_s": 1.304030272199998,
+      "transitions": 50000,
+      "comparisons": {
+        "random": {
+          "mean": 0.0,
+          "ci": [
+            -0.228025,
+            0.23
+          ]
+        },
+        "heuristic": {
+          "mean": -3.688,
+          "ci": [
+            -3.882025,
+            -3.49795
+          ]
+        }
+      },
+      "selected_by_validation": true
+    },
+    {
+      "game": "pong",
+      "candidate": "dqn",
+      "n_runs": 5,
+      "n_episodes": 500,
+      "mean": -4.074,
+      "median": -4.0,
+      "std": 0.8281882585397877,
+      "ci95": [
+        -4.26405,
+        -3.84995
+      ],
+      "win_rate": 0.0,
+      "truncation_rate": 0.634,
+      "latency_p95_us": 29.479599999999994,
+      "latency_median_us": 10.1045,
+      "train_wall_mean_s": 0.3492517577949911,
+      "train_cpu_mean_s": 0.3492369653999958,
+      "transitions": 15000,
+      "comparisons": {
+        "random": {
+          "mean": -0.386,
+          "ci": [
+            -0.642,
+            -0.118
+          ]
+        },
+        "heuristic": {
+          "mean": -4.074,
+          "ci": [
+            -4.284025,
+            -3.813925
+          ]
+        }
+      },
+      "selected_by_validation": false
+    },
+    {
+      "game": "breakout",
+      "candidate": "random",
+      "n_runs": 5,
+      "n_episodes": 500,
+      "mean": 80.36,
+      "median": 60.0,
+      "std": 28.85716326570384,
+      "ci95": [
+        75.999,
+        85.202
+      ],
+      "win_rate": 0.0,
+      "truncation_rate": 0.0,
+      "latency_p95_us": 5.66655,
+      "latency_median_us": 2.0185,
+      "train_wall_mean_s": 4.519539652392268e-05,
+      "train_cpu_mean_s": 4.391259999465546e-05,
+      "transitions": 0,
+      "comparisons": {
+        "random": {
+          "mean": 0.0,
+          "ci": [
+            0.0,
+            0.0
+          ]
+        },
+        "heuristic": {
+          "mean": -159.64,
+          "ci": [
+            -164.6,
+            -153.9985
+          ]
+        }
+      },
+      "selected_by_validation": false
+    },
+    {
+      "game": "breakout",
+      "candidate": "heuristic",
+      "n_runs": 5,
+      "n_episodes": 500,
+      "mean": 240.0,
+      "median": 240.0,
+      "std": 0.0,
+      "ci95": [
+        240.0,
+        240.0
+      ],
+      "win_rate": 0.0,
+      "truncation_rate": 1.0,
+      "latency_p95_us": 0.765,
+      "latency_median_us": 0.717,
+      "train_wall_mean_s": 5.530001362785697e-06,
+      "train_cpu_mean_s": 3.957599938075873e-06,
+      "transitions": 0,
+      "comparisons": {
+        "random": {
+          "mean": 159.64,
+          "ci": [
+            153.9985,
+            164.6
+          ]
+        },
+        "heuristic": {
+          "mean": 0.0,
+          "ci": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "selected_by_validation": false
+    },
+    {
+      "game": "breakout",
+      "candidate": "dqn",
+      "n_runs": 5,
+      "n_episodes": 500,
+      "mean": 76.0,
+      "median": 80.0,
+      "std": 8.008012020035062,
+      "ci95": [
+        68.0,
+        80.0
+      ],
+      "win_rate": 0.0,
+      "truncation_rate": 0.0,
+      "latency_p95_us": 30.2675,
+      "latency_median_us": 11.997,
+      "train_wall_mean_s": 0.5726173204020597,
+      "train_cpu_mean_s": 0.5724949002000358,
+      "transitions": 15000,
+      "comparisons": {
+        "random": {
+          "mean": -4.36,
+          "ci": [
+            -12.1605,
+            2.4
+          ]
+        },
+        "heuristic": {
+          "mean": -164.0,
+          "ci": [
+            -172.0,
+            -160.0
+          ]
+        }
+      },
+      "selected_by_validation": true
+    },
+    {
+      "game": "invaders",
+      "candidate": "random",
+      "n_runs": 5,
+      "n_episodes": 500,
+      "mean": 218.74,
+      "median": 220.0,
+      "std": 36.92342180996113,
+      "ci95": [
+        213.5395,
+        223.48
+      ],
+      "win_rate": null,
+      "truncation_rate": 0.958,
+      "latency_p95_us": 4.367299999999999,
+      "latency_median_us": 2.077,
+      "train_wall_mean_s": 4.4045393588021396e-05,
+      "train_cpu_mean_s": 4.239140005211084e-05,
+      "transitions": 0,
+      "comparisons": {
+        "random": {
+          "mean": 0.0,
+          "ci": [
+            0.0,
+            0.0
+          ]
+        },
+        "heuristic": {
+          "mean": 136.74,
+          "ci": [
+            130.47924999999998,
+            142.56025
+          ]
+        }
+      },
+      "selected_by_validation": false
+    },
+    {
+      "game": "invaders",
+      "candidate": "heuristic",
+      "n_runs": 5,
+      "n_episodes": 500,
+      "mean": 82.0,
+      "median": 80.0,
+      "std": 7.881893712617164,
+      "ci95": [
+        80.5,
+        83.6
+      ],
+      "win_rate": null,
+      "truncation_rate": 1.0,
+      "latency_p95_us": 5.036149999999999,
+      "latency_median_us": 1.589,
+      "train_wall_mean_s": 6.246607517823577e-06,
+      "train_cpu_mean_s": 4.434599986780086e-06,
+      "transitions": 0,
+      "comparisons": {
+        "random": {
+          "mean": -136.74,
+          "ci": [
+            -142.56025,
+            -130.47924999999998
+          ]
+        },
+        "heuristic": {
+          "mean": 0.0,
+          "ci": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "selected_by_validation": false
+    },
+    {
+      "game": "invaders",
+      "candidate": "genetic",
+      "n_runs": 5,
+      "n_episodes": 500,
+      "mean": 102.66,
+      "median": 100.0,
+      "std": 5.213324996106617,
+      "ci95": [
+        101.72,
+        103.76
+      ],
+      "win_rate": null,
+      "truncation_rate": 1.0,
+      "latency_p95_us": 94.75309999999999,
+      "latency_median_us": 38.067499999999995,
+      "train_wall_mean_s": 13.052433649409796,
+      "train_cpu_mean_s": 13.041976735199977,
+      "transitions": 323929,
+      "comparisons": {
+        "random": {
+          "mean": -116.08,
+          "ci": [
+            -121.58024999999999,
+            -110.1395
+          ]
+        },
+        "heuristic": {
+          "mean": 20.66,
+          "ci": [
+            18.75975,
+            22.66
+          ]
+        }
+      },
+      "selected_by_validation": true
+    }
+  ],
+  "decisions": {
+    "snake": {
+      "validation_candidate": "q_plain",
+      "status": "SEM_VENCEDOR_COMPROVADO",
+      "recommended": null
+    },
+    "pong": {
+      "validation_candidate": "cart",
+      "status": "SEM_VENCEDOR_COMPROVADO",
+      "recommended": null
+    },
+    "breakout": {
+      "validation_candidate": "dqn",
+      "status": "SEM_VENCEDOR_COMPROVADO",
+      "recommended": null
+    },
+    "invaders": {
+      "validation_candidate": "genetic",
+      "status": "SEM_VENCEDOR_COMPROVADO",
+      "recommended": null
+    }
+  }
+}
