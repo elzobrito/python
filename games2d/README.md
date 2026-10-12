@@ -5,6 +5,11 @@ Space Invaders; agentes aleatório/heurístico, Q-learning com/sem shaping,
 CART de arvores.py, DQN contínuo e evolução de controladores lineares/utilidade.
 Nenhuma alteração em g1–g6 nem nos jogos-fonte da disciplina.
 
+## Demonstração no desktop
+
+Veja o [screenshot do menu e o vídeo da demonstração](../README.md#demonstração-dos-jogos-2d)
+no README principal. As mídias estão incluídas no repositório.
+
 ## Executar
 
 Execute os comandos na pasta `/home/elzobrito/desenvolvimento/algoritmos/python`.

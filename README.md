@@ -4,6 +4,18 @@ Implementações didáticas em **NumPy puro** (sem scikit-learn nem XGBoost). Ca
 
 Autor: [Elzo Brito](https://github.com/elzobrito) · `@elzobrito`
 
+## Demonstração dos jogos 2D
+
+O pacote [games2d](games2d/README.md) integra Snake, Pong, Breakout e Space
+Invaders com agentes de IA e controles humanos.
+
+![Menu de seleção de Snake, Pong, Breakout e Space Invaders no desktop](assets/games2d/menu.png)
+
+[Assistir à gravação da demonstração — MP4, 5 min 24 s](assets/games2d/demonstracao.mp4)
+
+Capturas de 12/10/2026. As mídias estão incluídas em
+[`assets/games2d`](assets/games2d/) neste repositório.
+
 ## Como rodar
 
 ```bash

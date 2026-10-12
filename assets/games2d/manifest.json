@@ -1,0 +1,18 @@
+{
+  "schema": "games2d.media.v1",
+  "assets": [
+    {
+      "file": "menu.png",
+      "source_filename": "Screenshot From 2026-10-12 13-17-22.png",
+      "bytes": 137460,
+      "sha256": "1889311278f0f0d0327b96284cfc2ed5aad95e1adc159f24ac5b815ab10aeab7"
+    },
+    {
+      "file": "demonstracao.mp4",
+      "source_filename": "Screencast From 2026-10-12 13-09-09.mp4",
+      "bytes": 6431960,
+      "sha256": "c2e1d30dfe03857c35e17cc94e005e5e26b1358b76b2f7250330c9e35e9175c9"
+    }
+  ],
+  "binary_effect": "Direct binary copy explicitly requested by user; SHA256 audited. ESAA UTF8 file_updates publish documentation and manifest."
+}
